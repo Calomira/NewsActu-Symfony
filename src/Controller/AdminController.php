@@ -24,26 +24,7 @@ class AdminController extends AbstractController
 
         return $this->render('admin/form/create_article.html.twig',[
             'form' => $form->createView()
-        ])
-    }
-}
-/**
-     * @Route("/admin/creer-un-article", name="create_article", methods={"GET|POST"})
-     */
-    public function createArticle(Request $request,
-                                  EntityManagerInterface $entityManager,
-                                  SluggerInterface $slugger
-    ): Response
-    {
-        $article = new Article();
-
-        $form = $this->createForm(ArticleFormType::class, $article)
-            ->handleRequest($request);
-
-        
-        
-        return $this->render('admin/form/create_article.html.twig', [
-            'form' => $form->createView()
         ]);
     }
-
+}
+    
