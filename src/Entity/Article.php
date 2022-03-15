@@ -58,6 +58,11 @@ class Article
      */
     private $category;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $alias;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -155,6 +160,18 @@ class Article
     public function setCategory(?Categorie $category): self
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    public function getAlias(): ?string
+    {
+        return $this->alias;
+    }
+
+    public function setAlias(string $alias): self
+    {
+        $this->alias = $alias;
 
         return $this;
     }
