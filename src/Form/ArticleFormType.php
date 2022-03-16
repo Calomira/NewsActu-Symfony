@@ -30,7 +30,7 @@ class ArticleFormType extends AbstractType
                         'min' => 5,
                         'max' => 255,
                         'minMessage' => "Votre titre  est trop court.Le nombre de caractéres minimal est {{limit}}",
-                        'minMessage' => "Votre titre est trop long {{limit}} : votre titre contient {{value}} caractères"
+                        'maxMessage' => "Votre titre est trop long {{limit}} : votre titre contient {{value}} caractères"
                     ])
                     ],
             ])
@@ -44,7 +44,7 @@ class ArticleFormType extends AbstractType
                         'min' => 5,
                         'max' => 255,
                         'minMessage' => "Votre titre  est trop court.Le nombre de caractéres minimal est {{limit}}",
-                        'minMessage' => "Votre titre est trop long {{limit}} : votre titre contient {{value}} caractères"
+                        'maxMessage' => "Votre titre est trop long {{limit}} : votre titre contient {{value}} caractères"
                     ])
                     ],
             ])
