@@ -73,7 +73,7 @@ class ArticleFormType extends AbstractType
                 'constraints' => [
                     new Image ([
                        'mimeTypes' => ['image/jpeg' , 'image/png'],
-                       'mimeTypesMessage' => "les types de photo autorisés sont : .jpg et .png",
+                       'mimeTypesMessage' => "Les types de photo autorisés sont : .jpg et .png",
 
                     ]),
                 ],
