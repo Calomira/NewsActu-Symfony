@@ -2,15 +2,15 @@
 
 namespace App\Entity;
 
+
 use Doctrine\ORM\Mapping as ORM;
-use App\Repository\ComentaryRepository;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Gedmo\SoftDeleteable\Traits\SoftDeleteableEntity;
 
 /**
- * @ORM\Entity(repositoryClass=ComentaryRepository::class)
+ * @ORM\Entity(repositoryClass=CommentaryRepository::class)
  */
-class Comentary
+class Commentary
 {
     /**
      * Un 'trait' est une sorte de class PHP qui vous sert à réutiliser des propriétés et des Setters et Getters.
@@ -32,8 +32,13 @@ class Comentary
      */
     private $id;
 
+    // /**
+    //  * @ORM\Column(type="string", length=255)
+    //  */
+    // private $comment;
+
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="text")
      */
     private $comment;
 
@@ -41,6 +46,9 @@ class Comentary
      * @ORM\ManyToOne(targetEntity=Article::class, inversedBy="commentaries")
      * @ORM\JoinColumn(nullable=false)
      */
+    private $article;
+
+    
 
     public function getId(): ?int
     {
@@ -58,4 +66,20 @@ class Comentary
 
         return $this;
     }
+
+    
+
+    public function getArticle(): ?Article
+    {
+        return $this->article;
+    }
+
+    public function setArticle(?Article $article): self
+    {
+        $this->article = $article;
+
+        return $this;
+    }
+
+    
 }

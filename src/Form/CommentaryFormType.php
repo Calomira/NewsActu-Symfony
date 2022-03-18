@@ -2,12 +2,13 @@
 
 namespace App\Form;
 
+use App\Entity\Commentary;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Validator\Constraints\NotBlank;
-use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 class CommentaryFormType extends AbstractType
 {
@@ -16,25 +17,22 @@ class CommentaryFormType extends AbstractType
         $builder
             ->add('comment', TextareaType::class, [
                 'label' => false,
-                'attr' =>[
+                'attr' => [
                     'placeholder' => 'Commentez ici cet article'
-
                 ],
-                'constraints' => [],
-                new NotBlank([
-                    'message' => 'le commentaire ne peut être vide'
-                ])
-                            ])
-
-
-            ->add('submit', SubmitType::class,[
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Le commentaire ne peut être vide'
+                    ])
+                ],
+            ])
+            ->add('submit', SubmitType::class, [
                 'label' => 'Commenter <i class="fas fa-paper-plane"></i>',
-                'attr' =>[
-                    'class' =>'d-block col-3 my-3 mx-auto btn btn-warning'
+                'attr' => [
+                    'class' => 'd-block col-3 my-3 mx-auto btn btn-warning'
                 ],
-                'validate' => false, 
+                'validate' => false,
                 'label_html' => true,
-
             ])
         ;
     }
@@ -42,7 +40,7 @@ class CommentaryFormType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            // Configure your form options here
+            'data_class' => Commentary::class,
         ]);
     }
 }

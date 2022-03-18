@@ -22,4 +22,16 @@ class DefaultController extends AbstractController
             'articles' => $articles,
         ]);
     }   
-}
+
+    /**
+     * @Route("/categories", name="render_categories_in_nav", methods={"GET"})
+     */
+     public function renderCategorieInNav(EntityManagerInterface $entityManager): Response 
+          { 
+              $categories = $entityManager->getRepository(Categorie::class)->findBy(['deletedAt' => null]);
+         return $this->render('rendered/nav_categories.html.twig', [
+             'categories' => $categories
+         ]);
+     }
+
+    }

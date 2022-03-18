@@ -2,30 +2,30 @@
 
 namespace App\Repository;
 
-use App\Entity\Comentary;
+use App\Entity\Commentary;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @method Comentary|null find($id, $lockMode = null, $lockVersion = null)
- * @method Comentary|null findOneBy(array $criteria, array $orderBy = null)
- * @method Comentary[]    findAll()
- * @method Comentary[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Commentary|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Commentary|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Commentary[]    findAll()
+ * @method Commentary[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class ComentaryRepository extends ServiceEntityRepository
+class CommentaryRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Comentary::class);
+        parent::__construct($registry, Commentary::class);
     }
 
     /**
      * @throws ORMException
      * @throws OptimisticLockException
      */
-    public function add(Comentary $entity, bool $flush = true): void
+    public function add(Commentary $entity, bool $flush = true): void
     {
         $this->_em->persist($entity);
         if ($flush) {
@@ -37,7 +37,7 @@ class ComentaryRepository extends ServiceEntityRepository
      * @throws ORMException
      * @throws OptimisticLockException
      */
-    public function remove(Comentary $entity, bool $flush = true): void
+    public function remove(Commentary $entity, bool $flush = true): void
     {
         $this->_em->remove($entity);
         if ($flush) {
@@ -46,7 +46,7 @@ class ComentaryRepository extends ServiceEntityRepository
     }
 
     // /**
-    //  * @return Comentary[] Returns an array of Comentary objects
+    //  * @return Commentary[] Returns an array of Commentary objects
     //  */
     /*
     public function findByExampleField($value)
@@ -63,7 +63,7 @@ class ComentaryRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Comentary
+    public function findOneBySomeField($value): ?Commentary
     {
         return $this->createQueryBuilder('c')
             ->andWhere('c.exampleField = :val')
