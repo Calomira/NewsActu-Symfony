@@ -166,8 +166,7 @@ class AdminController extends AbstractController
   public function softDeleteArticle(
     Article $article,
     EntityManagerInterface $entityManager
-  ): Response 
-  {      #On set la propriete deletedAt pour archiver l'article.
+  ): Response {      #On set la propriete deletedAt pour archiver l'article.
     # De l'autre coté on affichera les articles où deletedAt === null
 
     $article->setDeletedAt(new DateTime());

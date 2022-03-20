@@ -2,7 +2,7 @@
 
 namespace App\Entity;
 
-
+use App\Repository\CommentaryRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Gedmo\SoftDeleteable\Traits\SoftDeleteableEntity;
