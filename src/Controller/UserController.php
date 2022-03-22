@@ -13,32 +13,36 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class UserController extends AbstractController
-{       
-    
-         /**
-          * @Route("/inscription", name="user_register", methods={"GET|POST"})
-          */
-        public function register(Request $request, EntityManagerInterface $entityManager, UserPasswordHasherInterface $passwordHasher ):Response
-        {
-                  $user = new User();
-                  $form = $this->createForm(RegisterFormType::class, $user)
-                  ->handleRequest($request);
-                  if($form->isSubmitted() && $form->isValid()){
-                      $user->setRoles(['ROLE_USER']);
-                      $user->setCreatedAt(new DateTime());
-                      $user->setUpdatedAt(new DateTime());
+{
 
-                      $user->setPassword($passwordHasher->hashPassword($user, $user->getPassword()));
-                      $entityManager->persist($user);
-                      $entityManager->flush();
-
-                      $this->addFlash('success', 'Vous êtes maintenant inscrit.Bienvenue ! ');
-                      return $this->redirectToRoute('default_home');
-                  } # END if $form
-
-                  return $this->render('user/register.html.twig' , [
-                      'form' => $form->createView()
-                  ]);
+    /**
+     * @Route("/inscription", name="user_register", methods={"GET|POST"})
+     */
+    public function register(Request $request, EntityManagerInterface $entityManager, UserPasswordHasherInterface $passwordHasher): Response
+    {
+        #Si l'utilisateur est connecté ,alors on redirige.
+        if ($this->getUser()) {
+            $this->addFlash('warning', "Vous êtes déjà inscrit");
+            return $this->redirectToRoute('default_home');
         }
-        
+        $user = new User();
+        $form = $this->createForm(RegisterFormType::class, $user)
+            ->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $user->setRoles(['ROLE_USER']);
+            $user->setCreatedAt(new DateTime());
+            $user->setUpdatedAt(new DateTime());
+
+            $user->setPassword($passwordHasher->hashPassword($user, $user->getPassword()));
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+            $this->addFlash('success', 'Vous êtes maintenant inscrit.Bienvenue ! ');
+            return $this->redirectToRoute('default_home');
+        } # END if $form
+
+        return $this->render('user/register.html.twig', [
+            'form' => $form->createView()
+        ]);
+    }
 }
