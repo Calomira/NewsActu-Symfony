@@ -49,9 +49,10 @@ class AppLoginAuthenticator extends AbstractLoginFormAuthenticator
             return new RedirectResponse($targetPath);
         }
 
-        // For example: AUCUNE INSTRUCTION NE PEUT ETRE ECRITE APRES KEYWORD RETURN
+        // AUCUNE INSTRUCTION NE PEUT ETRE ECRITE APRES LE KEYWORD 'return'
         return new RedirectResponse($this->urlGenerator->generate('default_home'));
-        // throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
+
+//        throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
     }
 
     protected function getLoginUrl(Request $request): string
