@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\CategorieRepository;
+use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -49,10 +50,17 @@ class Categorie
      * @ORM\OneToMany(targetEntity=Article::class, mappedBy="category")
      */
     private $articles;
+    //Fonction magique de PHP ,il en existe plusieurs.Ces fonctions sont automatiquement exécutés.
 
     public function __construct()
     {
         $this->articles = new ArrayCollection();
+
+        //On set les propriétés ici
+        //la class Categorie a accés à ses proprietes privée
+        $this->createdAt = new DateTime();
+        $this->updatedAt = new DateTime();
+
     }
 
     public function getId(): ?int
