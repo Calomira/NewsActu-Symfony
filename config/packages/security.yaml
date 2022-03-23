@@ -36,7 +36,8 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN } On peut le décommenter si on mets une nouvelle route dans AdminController/soit un ,soit
-        # - { path: ^/profile, roles: ROLE_USER }
+        - { path: ^/profile, roles: ROLE_USER }
+        
 
 when@test:
     security:
