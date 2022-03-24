@@ -273,7 +273,7 @@ class AdminController extends AbstractController
       $entityManager->persist($category);
       $entityManager->flush();
 
-      $this->addFlash('success', "Vous avez modifié  la catégorie " . $category->getName() . " avec succès.");
+      $this->addFlash('success', "Vous avez modifié  la catégorie " . $oldCategoryName() . " avec succès.");
       return $this->redirectToRoute('show_dashboard');
     }
     return $this->render('admin/form/form_category.html.twig', [

@@ -7,32 +7,34 @@
 	{% include 'include/_flashes.html.twig' %}
 
 	<div class="row">
-		<a href="#" class="btn btn-warning text-center text-dark">Changer mon mot de passe</a>
+		<a href="#" class="btn btn-warning text-center text-dark mx-auto my-4 ">Changer mon mot de passe</a>
 	</div>
-</div>
+	{# </div> #}
 
-<table class="table mt-3">
-	<thead>
-		<tr>
-			<th>Prénom</th>
-			<th>Nom</th>
-			<th>E-mail</th>
-			<th>Action</th>
-		</tr>
-	</thead>
-	
-    <tbody>
-		<tr>
-			<td>{{ app.user.prenom }}</td>
-			<td>{{ app.user.nom }}</td>
-			<td>{{ app.user.email }}</td>
-			<td>
-				<a  href="#" class="btn btn-info">
-					<i class="fa fa-user-edit"></i>
-				</a>
-			</td>
-		</tr>
-	</tbody>
-</table>
+	<table class="table mt-3">
+		<thead>
+			<tr>
+				<th>Prénom</th>
+				<th>Nom</th>
+				<th>E-mail</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<tr>
+				<td>{{ app.user.prenom }}</td>
+				<td>{{ app.user.nom }}</td>
+				<td>{{ app.user.email }}</td>
+				
+				<td>
+					<a href="{{ path('update_user',{'id' : app.user.id})}}" class="btn btn-info">
+						<i class="fa fa-user-edit">Modifier mon profile</i>
+					</a>
+				</td>
+			
+			</tr>
+		</tbody>
+	</table>
 
 {% endblock %}
